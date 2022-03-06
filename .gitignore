@@ -1,0 +1,14 @@
+*
+
+!*/
+!*.cc
+!*.h
+!*.md
+!*.py
+!*.proto
+!*.yml
+!.gitignore
+!.bazelrc
+!BUILD
+!WORKSPACE
+!LICENSE

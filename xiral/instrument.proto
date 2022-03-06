@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package xiral;
+
+message Midi {
+  int32 number = 1;
+  int32 velocity = 2;
+  int32 offset = 3;
+  int32 channel = 4;
+}
+
+message PlayRequest {
+  repeated Midi midi = 1;
+  float sample_rate = 2;
+  int32 chunk_size = 3;
+}
+
+message Waveform {
+  repeated float array = 1;
+  float sample_rate = 2;
+}
+
+message Audio {
+  repeated Waveform waveform = 1;
+  int32 bus = 2;
+}
+
+message RythmSignature {
+  int32 numer = 1;
+  int32 denom = 2;
+}
+
+message ResetRequest {
+  float bpm = 1;
+  RythmSignature rythm = 2;
+}
+
+message ResetResponce {
+  string info = 1;
+}
+
+// Instrument plugin serivce.
+service Instrument {
+  // Recieves midi note and sends audio
+  rpc Play (PlayRequest) returns (Audio);
+  rpc Reset (ResetRequest) returns (ResetResponce);
+}
